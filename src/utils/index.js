@@ -41,5 +41,4 @@ export function parseQuery() {
 const VUE_APP_API_URL = process.env.VUE_APP_API_URL || `${location.origin}/api`;
 const VUE_APP_WS_URL =
   process.env.VUE_APP_WS_URL || `ws:${location.hostname}:20003`;
-console.info(process.env.VUE_APP_API_URL, location.origin);
 export { VUE_APP_API_URL, VUE_APP_WS_URL };

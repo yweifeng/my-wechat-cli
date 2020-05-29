@@ -5,7 +5,7 @@ import { VUE_APP_API_URL } from "@utils/index";
 
 const instance = axios.create({
   baseURL: VUE_APP_API_URL,
-  timeout: 3000
+  timeout: 30000
 });
 
 const defaultOpt = { login: true };
@@ -22,14 +22,13 @@ function baseRequest(options) {
   console.log(options);
   return instance(options).then(res => {
     const data = res.data || {};
-
     if (res.status !== 200)
       return Promise.reject({ msg: "请求失败", res, data });
 
     if ([410000, 410001, 410002].indexOf(data.status) !== -1) {
       toLogin();
       return Promise.reject({ msg: res.data.msg, res, data, toLogin: true });
-    } else if (data.status === 200) {
+    } else if (res.status === 200) {
       return Promise.resolve(data, res);
     } else {
       return Promise.reject({ msg: res.data.msg, res, data });
