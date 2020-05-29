@@ -1,11 +1,11 @@
 <template>
   <div class="index">
-    home
+    Visitor
   </div>
 </template>
 <script>
 export default {
-  name: "Home",
+  name: "Visitor",
   components: {},
   props: {},
   data: function() {

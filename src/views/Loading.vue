@@ -19,9 +19,6 @@ export default {
     const { code, state } = this.$route.query;
     auth(code, state)
       .then(() => {
-        // location.replace(
-        //   decodeURIComponent(decodeURIComponent(this.$route.params.url))
-        // );
         location.href = decodeURIComponent(
           decodeURIComponent(this.$route.params.url)
         );

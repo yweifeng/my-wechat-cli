@@ -1,13 +1,10 @@
 <template>
   <div>
     <div class="app" v-cloak>
-      <!--      <transition :name="transitionName">-->
       <keep-alive :include="include" :max="10">
         <router-view class="router" ref="router"></router-view>
       </keep-alive>
-      <!--      </transition>-->
     </div>
-    <Home v-if="home === true"></Home>
   </div>
 </template>
 <script>
@@ -15,7 +12,6 @@ function isKeepAlive($route) {
   return $route.meta.keepAlive === undefined || $route.meta.keepAlive;
 }
 
-import Home from "@views/home/Index.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -31,12 +27,11 @@ export default {
       app: this
     };
   },
-  computed: mapGetters(["home", "isLogin"]),
-  components: {
-    Home
-  },
+  computed: mapGetters(["isLogin"]),
+  components: {},
   watch: {
     $route(to, from) {
+      alert(to);
       const lastPath = this.history[this.history.length - 1] || {},
         { isReplace, isBack } = this.$router;
 
@@ -59,105 +54,8 @@ export default {
 
       this.$router.isBack = false;
       this.$router.isReplace = false;
-
-      console.log(this.transitionName, "change");
     }
   }
 };
 </script>
-<style lang="scss">
-[v-cloak] {
-  display: none !important;
-}
-
-.router {
-  position: absolute;
-  width: 100%;
-}
-
-.fold-left-enter-active {
-  animation-name: fold-left-in;
-  animation-duration: 0.5s;
-}
-
-.fold-left-leave-active {
-  animation-name: fold-left-out;
-  animation-duration: 0.5s;
-}
-
-@keyframes fold-left-in {
-  0% {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-  }
-  10% {
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-  }
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes fold-left-out {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  10% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-.fold-right-enter-active {
-  animation-name: fold-right-in;
-  animation-duration: 0.5s;
-}
-
-.fold-right-leave-active {
-  animation-name: fold-right-out;
-  animation-duration: 0.5s;
-}
-
-@keyframes fold-right-in {
-  0% {
-    width: 100%;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-  10% {
-    width: 100%;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
-  }
-  100% {
-    width: 100%;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes fold-right-out {
-  0% {
-    width: 100%;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  10% {
-    width: 100%;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    width: 100%;
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
-  }
-}
-</style>
+<style lang="scss"></style>

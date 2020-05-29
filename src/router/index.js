@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import module from "./module";
 import Index from "@views/home/Index";
+import Visitor from "@views/checkin/visitor/Index";
 import NotDefined from "@views/NotDefined";
 import Loading from "@views/Loading";
 
@@ -10,6 +11,16 @@ Vue.use(Router);
 const router = new Router({
   mode: "history",
   routes: [
+    {
+      path: "/checkin/visitor",
+      name: "visitor",
+      meta: {
+        title: "访客",
+        keepAlive: true,
+        backgroundColor: "#fff"
+      },
+      component: Visitor
+    },
     {
       path: "/",
       name: "Index",
