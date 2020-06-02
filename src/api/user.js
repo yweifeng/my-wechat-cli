@@ -15,3 +15,11 @@ export function login(data) {
 export function getUserInfo(code) {
   return request.get(`/api/wx/user/${code}`, null, { login: false });
 }
+
+/**
+ * 获取微信配置信息
+ * @param data object code
+ */
+export function getWxConfig(url) {
+  return request.get(`/api/wx/jsapi/config?url=${url}`, null, { login: false });
+}

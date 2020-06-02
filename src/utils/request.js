@@ -1,6 +1,5 @@
 import axios from "axios";
 import $store from "../store";
-import toLogin from "@libs/login";
 import { VUE_APP_API_URL } from "@utils/index";
 
 const instance = axios.create({
@@ -16,7 +15,7 @@ function baseRequest(options) {
   headers["Authori-zation"] = "Bearer " + token;
   options.headers = headers;
   if (options.login && !token) {
-    toLogin();
+    // toLogin();
     return Promise.reject({ msg: "未登录", toLogin: true });
   }
   console.log(options);
@@ -26,7 +25,7 @@ function baseRequest(options) {
       return Promise.reject({ msg: "请求失败", res, data });
 
     if ([410000, 410001, 410002].indexOf(data.status) !== -1) {
-      toLogin();
+      // toLogin();
       return Promise.reject({ msg: res.data.msg, res, data, toLogin: true });
     } else if (res.status === 200) {
       return Promise.resolve(data, res);

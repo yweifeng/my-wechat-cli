@@ -11,22 +11,9 @@
 </template>
 
 <script>
-import { auth } from "@libs/wechat";
-
 export default {
   name: "Loading",
-  mounted() {
-    const { code, state } = this.$route.query;
-    auth(code, state)
-      .then(() => {
-        location.href = decodeURIComponent(
-          decodeURIComponent(this.$route.params.url)
-        );
-      })
-      .catch(() => {
-        location.replace("/");
-      });
-  }
+  mounted() {}
 };
 </script>
 <style scoped>

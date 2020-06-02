@@ -15,7 +15,7 @@ import "vue-ydui/dist/ydui.base.css";
 import "@assets/css/base.css";
 import "@assets/css/reset.css";
 import "@assets/css/style.css";
-import { isWeixin, parseQuery } from "@utils";
+import { parseQuery } from "@utils";
 
 Vue.use(animate);
 Vue.config.productionTip = false;
@@ -43,19 +43,6 @@ if (urlSpread !== undefined) {
   } else if (spread === 0 || typeof spread !== "number") {
     cookie.set("spread", urlSpread || 0);
   }
-}
-
-const _isWechat = isWeixin();
-// const module = () => import("vconsole");
-// module().then(Module => {
-//   new Module.default();
-// });
-
-if (_isWechat) {
-  const module = () => import("@libs/wechat");
-  module().then(Module => {
-    Module.default().then(() => Module.oAuth());
-  });
 }
 
 const $vm = new Vue({
